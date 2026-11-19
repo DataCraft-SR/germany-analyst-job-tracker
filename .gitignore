@@ -1,0 +1,10 @@
+build/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+.DS_Store
+dbt/.user.yml

@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_snapshots
+    description: One row per posting per day it was live (from data/raw).
+    columns:
+      - name: refnr
+        tests: [not_null]
+      - name: snapshot_date
+        tests: [not_null]
+
+  - name: stg_features
+    description: Description-derived features, one row per posting (from data/features).
+    columns:
+      - name: refnr
+        tests: [unique]
+      - name: german_requirement
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["Fluent (C1+)", "Good (B2)", "Nice to have", "Not stated"]
+
+  - name: int_postings
+    description: One row per posting with lifetime, latest attributes and features.
+    columns:
+      - name: refnr
+        tests: [unique, not_null]
+      - name: role_family
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["Data Analyst", "Business Analyst", "Business Intelligence",
+                       "Marketing Analytics", "CRM & RevOps", "Pricing",
+                       "Finance Analytics", "Operations Analytics", "Data Engineering"]
+      - name: annual_salary_mid
+        description: Midpoint of the advertised annual range, null if not published or implausible.
+
+  - name: mart_daily_trend
+    description: Live and new postings per day and role family.
+  - name: mart_role_summary
+    description: Today's market by role family.
+    columns:
+      - name: role_family
+        tests: [unique, not_null]
+  - name: mart_skills
+    description: Tool mentions in live postings.
+  - name: mart_german
+    description: German requirement buckets by role family.
+  - name: mart_salary
+    description: Advertised salary quartiles by role and seniority (last 90 days, n>=3).
+  - name: mart_locations
+    description: Live postings by city and federal state.
+  - name: mart_employers
+    description: Top 50 employers by live postings, staffing agencies flagged.
+  - name: mart_kpis
+    description: Single-row headline numbers.

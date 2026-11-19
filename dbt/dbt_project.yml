@@ -1,0 +1,28 @@
+name: job_tracker
+version: "1.0.0"
+config-version: 2
+profile: job_tracker
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+
+vars:
+  # Paths are relative to the repo root (run dbt from there, see scripts/run_pipeline.sh)
+  raw_glob: "data/raw/*.jsonl.gz"
+  features_glob: "data/features/*.jsonl.gz"
+  # Annual salaries outside this band are treated as data-entry errors
+  salary_floor: 20000
+  salary_ceiling: 200000
+
+models:
+  job_tracker:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    marts:
+      +materialized: table
+
+flags:
+  send_anonymous_usage_stats: false
