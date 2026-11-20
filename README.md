@@ -9,7 +9,12 @@ An automated pipeline collects every live data, BI, marketing, CRM, pricing and 
 ## Latest findings
 
 <!-- FINDINGS:START -->
-*Findings appear here automatically after the first daily run.*
+*Auto-updated 2026-11-20 · 1 days tracked since 2026-11-20*
+
+- **1,072 live analyst postings** in Germany today; **0 new** in the last 7 days. Largest family: **Data Analyst**; most postings in **Hamburg**.
+- **62%** of postings don't ask for fluent German, and **6%** are written in English. Most English-friendly: Data Engineering (10% of ads in English).
+- Most requested tools: SQL (32%), Power BI (26%), Excel (23%), SAP (22%), Python (17%).
+- **24%** offer home office. Median advertised salary **€63k** (only 142 ads publish pay).
 <!-- FINDINGS:END -->
 
 ## Why I built this
